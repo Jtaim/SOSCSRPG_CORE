@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace Engine.Models
 {
@@ -13,61 +10,53 @@ namespace Engine.Models
         private int _experiencePoints;
         private int _level;
         private int _gold;
-        public string Name
-        {
+
+        public string Name {
             get => _name;
-            set
-            {
+            set {
                 _name = value;
                 OnPropertyChanged("Name");
             }
         }
-        public string CharacterClass
-        {
+        public string CharacterClass {
             get => _characterClass;
-            set
-            {
+            set {
                 _characterClass = value;
                 OnPropertyChanged("CharacterClass");
             }
         }
-        public int HitPoints
-        {
+        public int HitPoints {
             get => _hitPoints;
-            set
-            {
+            set {
                 _hitPoints = value;
                 OnPropertyChanged("HitPoints");
             }
         }
-        public int ExperiencePoints
-        {
+        public int ExperiencePoints {
             get => _experiencePoints;
-            set
-            {
+            set {
                 _experiencePoints = value;
                 OnPropertyChanged("ExperiencePoints");
             }
         }
-        public int Level
-        {
+        public int Level {
             get => _level;
-            set
-            {
+            set {
                 _level = value;
                 OnPropertyChanged("Level");
             }
         }
-        public int Gold
-        {
+        public int Gold {
             get => _gold;
-            set
-            {
+            set {
                 _gold = value;
                 OnPropertyChanged("Gold");
             }
         }
 
+        /// <summary>
+        /// Event for property changed
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(in string propertyName)
         {
