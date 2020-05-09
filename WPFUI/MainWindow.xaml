@@ -9,6 +9,9 @@
         FontSize="11pt"
         Title="Awesome Game"
         Height="768" Width="1024">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </Window.Resources>
     <Grid>
         <!--Window Client Layout-->
         <Grid.RowDefinitions>
@@ -29,7 +32,6 @@
         <Grid Grid.Row="1" Grid.Column="0"
               Background="Aquamarine">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -65,8 +67,6 @@
                    Content="Level:"/>
             <Label Grid.Row="5" Grid.Column="1"
                    Content="{Binding CurrentPlayer.Level}"/>
-            <Button Grid.Row="6" Grid.Column="1"
-                    Content="Add XP" Click="ButtonBase_OnClick"/>
         </Grid>
         <!--Game Play-->
         <Grid Grid.Row="1" Grid.Column="1"
@@ -110,8 +110,52 @@
                Content="Inventory/Quests"
                Background="BurlyWood"/>
         <!--Action Controls-->
-        <Label Grid.Row="2" Grid.Column="1"
-               Content="Combat/Movement Controls"
-               Background="Lavender"/>
+        <Grid Grid.Row="2" Grid.Column="1"
+              Background="Lavender">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="255" />
+            </Grid.ColumnDefinitions>
+            <!--Movement Controls-->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--North Button-->
+                <Button Grid.Row="0" Grid.Column="1"
+                        Height="25" Width="65" Margin="10"
+                        Click="OnClick_MoveNorth"
+                        Visibility="{Binding HasLocationToNorth, Converter={StaticResource BooleanToVisibility}}"
+                        Content="North"/>
+                <!--West Button-->
+                <Button Grid.Row="1" Grid.Column="0"
+                        Height="25" Width="65" Margin="10"
+                        Click="OnClick_MoveWest"
+                        Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}"
+                        Content="West"/>
+                <!--East Button-->
+                <Button Grid.Row="1" Grid.Column="2"
+                        Height="25" Width="65" Margin="10"
+                        Click="OnClick_MoveEast"
+                        Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}"
+                        Content="East"/>
+                <!--South Button-->
+                <Button Grid.Row="2" Grid.Column="1"
+                        Height="25" Width="65" Margin="10"
+                        Click="OnClick_MoveSouth"
+                        Visibility="{Binding HasLocationToSouth, Converter={StaticResource BooleanToVisibility}}"
+                        Content="South"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
