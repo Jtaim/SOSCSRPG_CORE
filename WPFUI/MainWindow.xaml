@@ -3,25 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFUI"
+        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
+        d:DataContext="{d:DesignInstance viewModels:GameSession}"
         mc:Ignorable="d"
         FontSize="11pt"
-        Title="Awesome Game" Height="768" Width="1024">
+        Title="Awesome Game"
+        Height="768" Width="1024">
     <Grid>
+        <!--Window Client Layout-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="255"/>
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
-
-        <Grid Grid.Row="1" Grid.Column="0" Background="Aquamarine">
+        <!--Menu-->
+        <Label Grid.Row="0" Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Content="Menu"
+               Background="AliceBlue"/>
+        <!--Player Stats-->
+        <Grid Grid.Row="1" Grid.Column="0"
+              Background="Aquamarine">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -35,22 +41,36 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Class:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass}"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Hit points:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.HitPoints}"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="Gold:"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="XP:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}"/>
-            <Label Grid.Row="5" Grid.Column="0" Content="Level:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Level}"/>
-            <Button Grid.Row="6" Grid.Column="1" Content="Add XP" Click="ButtonBase_OnClick"/>
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="Name:"/>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.Name}"/>
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="Class:"/>
+            <Label Grid.Row="1" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.CharacterClass}"/>
+            <Label Grid.Row="2" Grid.Column="0"
+                   Content="Hit points:"/>
+            <Label Grid.Row="2" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.HitPoints}"/>
+            <Label Grid.Row="3" Grid.Column="0"
+                   Content="Gold:"/>
+            <Label Grid.Row="3" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.Gold}"/>
+            <Label Grid.Row="4" Grid.Column="0"
+                   Content="XP:"/>
+            <Label Grid.Row="4" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.ExperiencePoints}"/>
+            <Label Grid.Row="5" Grid.Column="0"
+                   Content="Level:"/>
+            <Label Grid.Row="5" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.Level}"/>
+            <Button Grid.Row="6" Grid.Column="1"
+                    Content="Add XP" Click="ButtonBase_OnClick"/>
         </Grid>
-
-        <Grid Grid.Row="1" Grid.Column="1" Background="Beige">
+        <!--Game Play-->
+        <Grid Grid.Row="1" Grid.Column="1"
+              Background="Beige">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -59,22 +79,38 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gainsboro" BorderThickness="1">
+            <!--Location Information-->
+            <Border Grid.Row="0" Grid.Column="1"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="1">
                 <Grid Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Name}"/>
-                    <Image Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="125" Width="125" Source="{Binding CurrentLocation.ImageName}"/>
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}"/>
+                    <!--Current Location Information-->
+                    <TextBlock Grid.Row="0"
+                               HorizontalAlignment="Center"
+                               Text="{Binding CurrentLocation.Name}"/>
+                    <Image Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="125" Width="125"
+                           Source="{Binding CurrentLocation.ImageName, Converter={StaticResource FileToBitmapConverter}}"/>
+                    <TextBlock Grid.Row="2"
+                               HorizontalAlignment="Center"
+                               Text="{Binding CurrentLocation.Description}"/>
                 </Grid>
             </Border>
         </Grid>
-        
-        <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="BurlyWood"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement Controls" Background="Lavender"/>
-
+        <!--Inventory, Quests, and Recipes-->
+        <Label Grid.Row="2" Grid.Column="0"
+               Content="Inventory/Quests"
+               Background="BurlyWood"/>
+        <!--Action Controls-->
+        <Label Grid.Row="2" Grid.Column="1"
+               Content="Combat/Movement Controls"
+               Background="Lavender"/>
     </Grid>
 </Window>

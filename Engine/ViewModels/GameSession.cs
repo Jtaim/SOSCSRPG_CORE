@@ -23,7 +23,7 @@ namespace Engine.ViewModels
                 XCooordinate = 0,
                 YCooordinate = -1,
                 Description = "This is your house.",
-                ImageName = "/Engine;component/Images/Locations/Home.png"
+                ImageName = "/Images/Locations/Home.png"
             };
         }
     }
