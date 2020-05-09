@@ -116,10 +116,25 @@
                               HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Description"
-                                                Binding="{Binding Name}"
+                                                Binding="{Binding Name, Mode=OneWay}"
                                                 Width="*"/>
                             <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Price}"
+                                                Binding="{Binding Price, Mode=OneWay}"
+                                                Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <!--Quest Tab-->
+                <TabItem Header="Quests">
+                    <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name"
+                                                Binding="{Binding PlayerQuest.Name, Mode=OneWay}"
+                                                Width="*"/>
+                            <DataGridTextColumn Header="Done?"
+                                                Binding="{Binding IsCompleted, Mode=OneWay}"
                                                 Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
