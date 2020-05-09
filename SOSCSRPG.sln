@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFUI", "WPFUI\WPFUI.csproj", "{2B6C853A-45C8-499C-A658-C38EBCA0494B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{01B1B92C-7313-4CF5-9761-E4A7F09C1245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{01B1B92C-7313-4CF5-9761-E4A7F09C1245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
