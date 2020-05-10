@@ -29,6 +29,7 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(HasLocationToEast));
                 OnPropertyChanged(nameof(HasLocationToSouth));
 
+                CompleteQuestsAtLocation();
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
             }
@@ -116,11 +117,66 @@ namespace Engine.ViewModels
             }
         }
 
+        private void CompleteQuestsAtLocation()
+        {
+            foreach(var quest in CurrentLocation.QuestsAvailableHere) {
+                var questToComplete = CurrentPlayer.Quests.FirstOrDefault(q => q.PlayerQuest.ID == quest.ID &&
+                                                                          !q.IsCompleted);
+
+                if(questToComplete != null) {
+                    if(CurrentPlayer.HasAllTheseItems(quest.ItemsToComplete)) {
+                        // Remove the quest completion items from the player's inventory
+                        foreach(var itemQuantity in quest.ItemsToComplete) {
+                            for(var i = 0; i < itemQuantity.Quantity; i++) {
+                                CurrentPlayer.RemoveItemFromInventory(CurrentPlayer.Inventory.First(item => item.ItemTypeID == itemQuantity.ItemID));
+                            }
+                        }
+
+                        RaiseMessage("");
+                        RaiseMessage($"You completed the '{quest.Name}' quest");
+
+                        // Give the player the quest rewards
+                        CurrentPlayer.ExperiencePoints += quest.RewardExperiencePoints;
+                        RaiseMessage($"You receive {quest.RewardExperiencePoints} experience points");
+
+                        CurrentPlayer.Gold += quest.RewardGold;
+                        RaiseMessage($"You receive {quest.RewardGold} gold");
+
+                        foreach(var itemQuantity in quest.RewardItems) {
+                            var rewardItem = ItemFactory.CreateGameItem(itemQuantity.ItemID);
+
+                            CurrentPlayer.AddItemToInventory(rewardItem);
+                            RaiseMessage($"You receive a {rewardItem.Name}");
+                        }
+
+                        // Mark the Quest as completed
+                        questToComplete.IsCompleted = true;
+                    }
+                }
+            }
+        }
+
         private void GivePlayerQuestsAtLocation()
         {
-            foreach(Quest quest in CurrentLocation.QuestsAvailableHere) {
+            foreach(var quest in CurrentLocation.QuestsAvailableHere) {
                 if(!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID)) {
                     CurrentPlayer.Quests.Add(new QuestStatus(quest));
+                    
+                    RaiseMessage("");
+                    RaiseMessage($"You receive the '{quest.Name}' quest");
+                    RaiseMessage(quest.Description);
+
+                    RaiseMessage("Return with:");
+                    foreach(var itemQuantity in quest.ItemsToComplete) {
+                        RaiseMessage($"   {itemQuantity.Quantity} {ItemFactory.CreateGameItem(itemQuantity.ItemID).Name}");
+                    }
+
+                    RaiseMessage("And you will receive:");
+                    RaiseMessage($"   {quest.RewardExperiencePoints} experience points");
+                    RaiseMessage($"   {quest.RewardGold} gold");
+                    foreach(var itemQuantity in quest.RewardItems) {
+                        RaiseMessage($"   {itemQuantity.Quantity} {ItemFactory.CreateGameItem(itemQuantity.ItemID).Name}");
+                    }
                 }
             }
         }
@@ -136,7 +192,7 @@ namespace Engine.ViewModels
             }
 
             // Determine damage to monster
-            int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
+            var damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
 
             if(damageToMonster == 0) {
                 RaiseMessage($"You missed the {CurrentMonster.Name}.");
@@ -157,8 +213,8 @@ namespace Engine.ViewModels
                 CurrentPlayer.Gold += CurrentMonster.RewardGold;
                 RaiseMessage($"You receive {CurrentMonster.RewardGold} gold.");
 
-                foreach(ItemQuantity itemQuantity in CurrentMonster.Inventory) {
-                    GameItem item = ItemFactory.CreateGameItem(itemQuantity.ItemID);
+                foreach(var itemQuantity in CurrentMonster.Inventory) {
+                    var item = ItemFactory.CreateGameItem(itemQuantity.ItemID);
                     CurrentPlayer.AddItemToInventory(item);
                     RaiseMessage($"You receive {itemQuantity.Quantity} {item.Name}.");
                 }
@@ -168,7 +224,7 @@ namespace Engine.ViewModels
             }
             else {
                 // If monster is still alive, let the monster attack
-                int damageToPlayer = RandomNumberGenerator.NumberBetween(CurrentMonster.MinimumDamage, CurrentMonster.MaximumDamage);
+                var damageToPlayer = RandomNumberGenerator.NumberBetween(CurrentMonster.MinimumDamage, CurrentMonster.MaximumDamage);
 
                 if(damageToPlayer == 0) {
                     RaiseMessage("The monster attacks, but misses you.");
