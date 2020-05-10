@@ -155,15 +155,19 @@
             <TabControl>
                 <!--Inventory Tab-->
                 <TabItem Header="Inventory">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory}"
+                    <DataGrid ItemsSource="{Binding CurrentPlayer.GroupedInventory}"
                               AutoGenerateColumns="False"
                               HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Description"
-                                                Binding="{Binding Name, Mode=OneWay}"
+                                                Binding="{Binding Item.Name, Mode=OneWay}"
                                                 Width="*"/>
+                            <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
                             <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Price, Mode=OneWay}"
+                                                Binding="{Binding Item.Price, Mode=OneWay}"
                                                 Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
