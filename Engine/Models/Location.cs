@@ -16,6 +16,8 @@ namespace Engine.Models
         public List<MonsterEncounter> MonstersHere { get; set; } =
             new List<MonsterEncounter>();
 
+        public Trader TraderHere { get; set; }
+
         public void AddMonster(int monsterID, int chanceOfEncountering)
         {
             if(MonstersHere.Exists(m => m.MonsterID == monsterID)) {
@@ -48,7 +50,7 @@ namespace Engine.Models
             // that is the monster to return.
             var runningTotal = 0;
 
-            foreach(MonsterEncounter monsterEncounter in MonstersHere) {
+            foreach(var monsterEncounter in MonstersHere) {
                 runningTotal += monsterEncounter.ChanceOfEncountering;
 
                 if(randomNumber <= runningTotal) {

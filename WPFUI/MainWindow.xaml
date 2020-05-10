@@ -242,6 +242,11 @@
                         Click="OnClick_MoveWest"
                         Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}"
                         Content="West"/>
+                <!--Trader Button-->
+                <Button Grid.Row="1" Grid.Column="1" 
+                        Height="25" Width="65" Margin="10" 
+                        Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
+                        Content="Trade"/>
                 <!--East Button-->
                 <Button Grid.Row="1" Grid.Column="2"
                         Height="25" Width="65" Margin="10"
