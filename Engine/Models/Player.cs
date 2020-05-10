@@ -38,8 +38,15 @@ namespace Engine.Models
 
         #endregion
 
-        public Player()
-            => Quests = new ObservableCollection<QuestStatus>();
+        public Player(string name, string characterClass, int experiencePoints,
+                      int maximumHitPoints, int currentHitPoints, int gold)
+            : base(name, maximumHitPoints, currentHitPoints, gold)
+        {
+            CharacterClass = characterClass;
+            ExperiencePoints = experiencePoints;
+
+            Quests = new ObservableCollection<QuestStatus>();
+        }
 
         public bool HasAllTheseItems(List<ItemQuantity> items)
         {
