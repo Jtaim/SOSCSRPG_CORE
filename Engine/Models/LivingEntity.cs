@@ -19,7 +19,7 @@ namespace Engine.Models
             get => _name;
             private set {
                 _name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged();
             }
         }
 
@@ -27,7 +27,7 @@ namespace Engine.Models
             get => _currentHitPoints;
             private set {
                 _currentHitPoints = value;
-                OnPropertyChanged(nameof(CurrentHitPoints));
+                OnPropertyChanged();
             }
         }
 
@@ -35,7 +35,7 @@ namespace Engine.Models
             get => _maximumHitPoints;
             protected set {
                 _maximumHitPoints = value;
-                OnPropertyChanged(nameof(MaximumHitPoints));
+                OnPropertyChanged();
             }
         }
 
@@ -43,7 +43,7 @@ namespace Engine.Models
             get => _gold;
             private set {
                 _gold = value;
-                OnPropertyChanged(nameof(Gold));
+                OnPropertyChanged();
             }
         }
 
@@ -51,13 +51,13 @@ namespace Engine.Models
             get => _level;
             protected set {
                 _level = value;
-                OnPropertyChanged(nameof(Level));
+                OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<GameItem> Inventory { get; set; }
+        public ObservableCollection<GameItem> Inventory { get; }
 
-        public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; set; }
+        public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; }
 
         public List<GameItem> Weapons =>
             Inventory.Where(i => i is Weapon).ToList();
