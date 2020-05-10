@@ -10,12 +10,15 @@ Using [Visual Studio Community 2019](https://www.visualstudio.com/en-us/products
 
 Images need to be BitMap,  refer to TAG: BitMapConversion?<br>
 
+For unit testing I used xUnit.  The framework version used in the tutorials don't seem to work in Core version.<br>
+
 ### Resources:
 - [Scott Lilly](https://scottlilly.com/)
 - [Windows Presentation Foundation (WPF)](https://docs.microsoft.com/en-us/dotnet/framework/wpf/)
 - [Additional .Net development information](https://dotnet.microsoft.com/download)
 - [.Net on GitHub](https://github.com/dotnet)
 - [WPF.Net Core: 3.1](https://docs.microsoft.com/en-us/dotnet/api/?view=netcore-3.1)
+- [xUnit](https://xunit.net/)
 
 
  ##### Disclaimer
