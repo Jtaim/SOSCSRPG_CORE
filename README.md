@@ -8,7 +8,7 @@ Using [Visual Studio Community 2019](https://www.visualstudio.com/en-us/products
 - project <b>WPFUI</b> is a WPF windows application (.NET Core 3.1)
 - project <b>Engine</b> is a Class Library (.NET Core 3.1)
 
-Images need to be BitMap?<br>
+Images need to be BitMap,  refer to TAG: BitMapConversion?<br>
 
 ### Resources:
 - [Scott Lilly](https://scottlilly.com/)

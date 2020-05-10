@@ -33,7 +33,7 @@ namespace Engine.Factories
                     return giantSpider;
 
                 default:
-                    throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", monsterID));
+                    throw new ArgumentException($"MonsterType '{monsterID}' does not exist");
             }
         }
 
