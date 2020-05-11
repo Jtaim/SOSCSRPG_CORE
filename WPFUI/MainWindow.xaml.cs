@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Documents;
 using Engine.EventArgs;
+using Engine.Models;
 using Engine.ViewModels;
 
 namespace WPFUI
@@ -50,6 +51,12 @@ namespace WPFUI
                 DataContext = _gameSession
             };
             tradeScreen.ShowDialog();
+        }
+
+        private void OnClick_Craft(object sender, RoutedEventArgs e)
+        {
+            var recipe = ((FrameworkElement)sender).DataContext as Recipe;
+            _gameSession.CraftItemUsing(recipe);
         }
     }
 }
