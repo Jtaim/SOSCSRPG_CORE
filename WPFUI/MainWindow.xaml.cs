@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Engine.EventArgs;
@@ -53,11 +54,13 @@ namespace WPFUI
 
         private void OnClick_DisplayTradeScreen(object sender, RoutedEventArgs e)
         {
-            var tradeScreen = new TradeScreen {
-                Owner = this,
-                DataContext = _gameSession
-            };
-            tradeScreen.ShowDialog();
+            if(_gameSession.CurrentTrader != null) {
+                var tradeScreen = new TradeScreen {
+                    Owner = this,
+                    DataContext = _gameSession
+                };
+                tradeScreen.ShowDialog();
+            }
         }
 
         private void OnClick_Craft(object sender, RoutedEventArgs e)
@@ -85,6 +88,11 @@ namespace WPFUI
             // consume
             _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
 
+            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
+            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
+            _userInputActions.Add(Key.T, () => OnClick_DisplayTradeScreen(this, new RoutedEventArgs()));
+
             // exit game
             _userInputActions.Add(Key.Escape, () => Close());
         }
@@ -93,6 +101,18 @@ namespace WPFUI
         {
             if(_userInputActions.ContainsKey(e.Key)) {
                 _userInputActions[e.Key].Invoke();
+            }
+        }
+
+        private void SetTabFocusTo(string tabName)
+        {
+            foreach(var item in PlayerDataTabControl.Items) {
+                if(item is TabItem tabItem) {
+                    if(tabItem.Name == tabName) {
+                        tabItem.IsSelected = true;
+                        return;
+                    }
+                }
             }
         }
     }
