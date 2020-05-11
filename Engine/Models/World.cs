@@ -6,13 +6,10 @@ namespace Engine.Models
     {
         private readonly List<Location> _locations = new List<Location>();
 
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, string imageName)
-            => _locations.Add(new Location(
-                xCoordinate,
-                yCoordinate,
-                name,
-                description,
-                $"/Images/Locations/{imageName}"));
+        internal void AddLocation(Location location)
+        {
+            _locations.Add(location);
+        }
 
         public Location LocationAt(int xCoordinate, int yCoordinate)
         {
