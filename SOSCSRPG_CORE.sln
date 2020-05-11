@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFUI", "WPFUI\WPFUI.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{01B1B92C-7313-4CF5-9761-E4A7F09C1245}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEngine", "TestEngine\TestEngine.csproj", "{C2F9481B-73D4-40E2-8A6C-BECE1991FC4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEngine", "TestEngine\TestEngine.csproj", "{2B8D4917-D36A-4EB1-9997-D008FE1C6CF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{01B1B92C-7313-4CF5-9761-E4A7F09C1245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B1B92C-7313-4CF5-9761-E4A7F09C1245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01B1B92C-7313-4CF5-9761-E4A7F09C1245}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2F9481B-73D4-40E2-8A6C-BECE1991FC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2F9481B-73D4-40E2-8A6C-BECE1991FC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2F9481B-73D4-40E2-8A6C-BECE1991FC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2F9481B-73D4-40E2-8A6C-BECE1991FC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8D4917-D36A-4EB1-9997-D008FE1C6CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8D4917-D36A-4EB1-9997-D008FE1C6CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8D4917-D36A-4EB1-9997-D008FE1C6CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8D4917-D36A-4EB1-9997-D008FE1C6CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,28 +1,29 @@
 ﻿using Engine.ViewModels;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestEngine.ViewModels
 {
+    [TestClass]
     public class TestGameSession
     {
-        [Fact]
+        [TestMethod]
         public void TestCreateGameSession()
         {
             GameSession gameSession = new GameSession();
 
-            Assert.NotNull(gameSession.CurrentPlayer);
-            Assert.Equal("Town Square", gameSession.CurrentLocation.Name);
+            Assert.IsNotNull(gameSession.CurrentPlayer);
+            Assert.AreEqual("Town Square", gameSession.CurrentLocation.Name);
         }
 
-        [Fact]
+        [TestMethod]
         public void TestPlayerMovesHomeAndIsCompletelyHealedOnKilled()
         {
             GameSession gameSession = new GameSession();
 
             gameSession.CurrentPlayer.TakeDamage(999);
 
-            Assert.Equal("Home", gameSession.CurrentLocation.Name);
-            Assert.Equal(gameSession.CurrentPlayer.Level * 10, gameSession.CurrentPlayer.CurrentHitPoints);
+            Assert.AreEqual("Home", gameSession.CurrentLocation.Name);
+            Assert.AreEqual(gameSession.CurrentPlayer.Level * 10, gameSession.CurrentPlayer.CurrentHitPoints);
         }
     }
 }
