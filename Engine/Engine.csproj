@@ -8,6 +8,9 @@
       <None Remove="GameData\GameItems.xml" />
       <None Remove="GameData\Locations.xml" />
       <None Remove="GameData\Monsters.xml" />
+      <None Remove="GameData\Quests.xml" />
+      <None Remove="GameData\Recipes.xml" />
+      <None Remove="GameData\Traders.xml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -18,6 +21,15 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="GameData\Monsters.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="GameData\Quests.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="GameData\Recipes.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="GameData\Traders.xml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
