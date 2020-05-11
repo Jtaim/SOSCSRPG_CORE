@@ -14,6 +14,7 @@ namespace Engine.Models
         private int _maximumHitPoints;
         private int _gold;
         private int _level;
+        private GameItem _currentWeapon;
 
         public string Name {
             get => _name;
@@ -55,6 +56,23 @@ namespace Engine.Models
             }
         }
 
+        public GameItem CurrentWeapon {
+            get => _currentWeapon;
+            set {
+                if(_currentWeapon != null) {
+                    _currentWeapon.Action.OnActionPerformed -= RaiseActionPerformedEvent;
+                }
+
+                _currentWeapon = value;
+
+                if(_currentWeapon != null) {
+                    _currentWeapon.Action.OnActionPerformed += RaiseActionPerformedEvent;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<GameItem> Inventory { get; }
 
         public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; }
@@ -66,6 +84,7 @@ namespace Engine.Models
 
         #endregion
 
+        public event EventHandler<string> OnActionPerformed;
         public event EventHandler OnKilled;
 
         protected LivingEntity(string name, int maximumHitPoints, int currentHitPoints,
@@ -80,6 +99,9 @@ namespace Engine.Models
             Inventory = new ObservableCollection<GameItem>();
             GroupedInventory = new ObservableCollection<GroupedInventoryItem>();
         }
+
+        public void UseCurrentWeaponOn(LivingEntity target)
+            => CurrentWeapon.PerformAction(this, target);
 
         public void TakeDamage(int hitPointsOfDamage)
         {
@@ -160,9 +182,10 @@ namespace Engine.Models
         #region Private functions
 
         private void RaiseOnKilledEvent()
-        {
-            OnKilled?.Invoke(this, new System.EventArgs());
-        }
+            => OnKilled?.Invoke(this, new System.EventArgs());
+
+        private void RaiseActionPerformedEvent(object sender, string result)
+            => OnActionPerformed?.Invoke(this, result);
 
         #endregion
     }
