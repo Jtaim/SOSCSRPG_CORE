@@ -162,10 +162,16 @@ namespace Engine.Models
         }
 
         public void AddItemToInventory(GameItem item)
-            => Inventory = Inventory.AddItem(item);
+        {
+            Inventory = Inventory.AddItem(item);
+            DefaultItemsSelection();
+        }
 
         public void RemoveItemFromInventory(GameItem item)
-            => Inventory = Inventory.RemoveItem(item);
+        {
+            Inventory = Inventory.RemoveItem(item);
+            DefaultItemsSelection();
+        }
 
         public void RemoveItemsFromInventory(List<ItemQuantity> itemQuantities)
             => Inventory = Inventory.RemoveItems(itemQuantities);
@@ -177,6 +183,22 @@ namespace Engine.Models
 
         private void RaiseActionPerformedEvent(object sender, string result)
             => OnActionPerformed?.Invoke(this, result);
+
+        // not in lesson but added to auto populate the weapon and consumable comboboxes
+        private void DefaultItemsSelection()
+        {
+            // keep weapon combo-box populated 
+            if(CurrentWeapon == null && Inventory.Weapons.Count != 0) {
+                var weapons = Inventory.Weapons;
+                CurrentWeapon = weapons[0];
+            }
+
+            // keep consumable combo-box populated 
+            if(Inventory.HasConsumable) {
+                var consumable = Inventory.Consumables;
+                CurrentConsumable = consumable[0];
+            }
+        }
 
         #endregion
     }
