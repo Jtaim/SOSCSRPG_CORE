@@ -12,9 +12,10 @@ namespace Engine.Models
         public int RewardExperiencePoints { get; }
 
         public Monster(int id, string name, string imageName,
-                       int maximumHitPoints, GameItem currentWeapon,
+                       int maximumHitPoints, int dexterity,
+                       GameItem currentWeapon,
                        int rewardExperiencePoints, int gold)
-            : base(name, maximumHitPoints, maximumHitPoints, gold)
+            : base(name, maximumHitPoints, maximumHitPoints, dexterity, gold)
         {
             ID = id;
             ImageName = imageName;
@@ -34,8 +35,8 @@ namespace Engine.Models
         public Monster GetNewInstance()
         {
             // "Clone" this monster to a new Monster object
-            var newMonster = new Monster(ID, Name, ImageName, MaximumHitPoints, CurrentWeapon,
-                                         RewardExperiencePoints, Gold);
+            var newMonster = new Monster(ID, Name, ImageName, MaximumHitPoints, Dexterity,
+                                         CurrentWeapon, RewardExperiencePoints, Gold);
 
             foreach(var itemPercentage in _lootTable) {
                 // Clone the loot table - even though we probably won't need it

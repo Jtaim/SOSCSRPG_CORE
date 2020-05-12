@@ -9,6 +9,7 @@ namespace Engine.Models
         #region Properties
 
         private string _name;
+        private int _dexterity;
         private int _currentHitPoints;
         private int _maximumHitPoints;
         private int _gold;
@@ -21,6 +22,14 @@ namespace Engine.Models
             get => _name;
             private set {
                 _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Dexterity {
+            get => _dexterity;
+            private set {
+                _dexterity = value;
                 OnPropertyChanged();
             }
         }
@@ -108,9 +117,10 @@ namespace Engine.Models
         public event EventHandler OnKilled;
 
         protected LivingEntity(string name, int maximumHitPoints, int currentHitPoints,
-                               int gold, int level = 1)
+                               int dexterity, int gold, int level = 1)
         {
             Name = name;
+            Dexterity = dexterity;
             MaximumHitPoints = maximumHitPoints;
             CurrentHitPoints = currentHitPoints;
             Gold = gold;
