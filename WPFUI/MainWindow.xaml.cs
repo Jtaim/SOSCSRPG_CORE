@@ -23,7 +23,7 @@ namespace WPFUI
 
             InitializeUserInputActions();
 
-            _gameSession = new GameSession();
+            _gameSession = SaveGameService.LoadLastSaveOrCreateNew();
 
             _messageBroker.OnMessageRaised += OnGameMessageRaised;
 
@@ -116,6 +116,11 @@ namespace WPFUI
                     }
                 }
             }
+        }
+
+        private void MainWindow_OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveGameService.Save(_gameSession);
         }
     }
 }
