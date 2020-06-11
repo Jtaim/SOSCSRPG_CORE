@@ -264,6 +264,7 @@
                           SelectedItem="{Binding CurrentPlayer.CurrentWeapon}"
                           DisplayMemberPath="Name"/>
                 <Button Grid.Row="0" Grid.Column="2"
+                        Style="{StaticResource RoundButtonTemplate}"
                         Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                         Content="Use"
                         Click="OnClick_AttackMonster"/>
@@ -274,6 +275,7 @@
                           SelectedItem="{Binding CurrentPlayer.CurrentConsumable}"
                           DisplayMemberPath="Name"/>
                 <Button Grid.Row="1" Grid.Column="2"
+                        Style="{StaticResource RoundButtonTemplate}"
                         Visibility="{Binding CurrentPlayer.Inventory.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
                         Content="Use"
                         Click="OnClick_UseCurrentConsumable"/>
@@ -292,18 +294,21 @@
                 </Grid.ColumnDefinitions>
                 <!--North Button-->
                 <Button Grid.Row="0" Grid.Column="1"
+                        Height="25" Width="65" Margin="10"
                         Style="{StaticResource RoundButtonTemplate}"
                         Click="OnClick_MoveNorth"
                         Visibility="{Binding HasLocationToNorth, Converter={StaticResource BooleanToVisibility}}"
                         Content="North"/>
                 <!--West Button-->
                 <Button Grid.Row="1" Grid.Column="0"
+                        Height="25" Width="65" Margin="10"
                         Style="{StaticResource RoundButtonTemplate}"
                         Click="OnClick_MoveWest"
                         Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}"
                         Content="West"/>
                 <!--Trader Button-->
                 <Button Grid.Row="1" Grid.Column="1" 
+                        Height="25" Width="65" Margin="10"
                         Style="{StaticResource RoundButtonTemplate}"
                         Background="Goldenrod"
                         Click="OnClick_DisplayTradeScreen"
@@ -311,12 +316,14 @@
                         Content="Trade"/>
                 <!--East Button-->
                 <Button Grid.Row="1" Grid.Column="2"
+                        Height="25" Width="65" Margin="10"
                         Style="{StaticResource RoundButtonTemplate}"
                         Click="OnClick_MoveEast"
                         Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}"
                         Content="East"/>
                 <!--South Button-->
                 <Button Grid.Row="2" Grid.Column="1"
+                        Height="25" Width="65" Margin="10"
                         Style="{StaticResource RoundButtonTemplate}"
                         Click="OnClick_MoveSouth"
                         Visibility="{Binding HasLocationToSouth, Converter={StaticResource BooleanToVisibility}}"
