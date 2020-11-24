@@ -16,7 +16,8 @@ namespace Engine.Factories
 
         static ItemFactory()
         {
-            if(File.Exists(GAME_DATA_FILENAME)) {
+            if(File.Exists(GAME_DATA_FILENAME))
+            {
                 XmlDocument data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
 
@@ -24,7 +25,8 @@ namespace Engine.Factories
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/HealingItems/HealingItem"));
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/MiscellaneousItems/MiscellaneousItem"));
             }
-            else {
+            else
+            {
                 throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
         }
@@ -37,11 +39,13 @@ namespace Engine.Factories
 
         private static void LoadItemsFromNodes(XmlNodeList nodes)
         {
-            if(nodes == null) {
+            if(nodes == null)
+            {
                 return;
             }
 
-            foreach(XmlNode node in nodes) {
+            foreach(XmlNode node in nodes)
+            {
                 var itemCategory = DetermineItemCategory(node.Name);
 
                 var gameItem = new GameItem(itemCategory,
@@ -50,12 +54,14 @@ namespace Engine.Factories
                                             node.AttributeAsInt("Price"),
                                             itemCategory == GameItem.ItemCategory.Weapon);
 
-                if(itemCategory == GameItem.ItemCategory.Weapon) {
+                if(itemCategory == GameItem.ItemCategory.Weapon)
+                {
                     gameItem.Action = new AttackWithWeapon(gameItem,
                                                            node.AttributeAsInt("MinimumDamage"),
                                                            node.AttributeAsInt("MaximumDamage"));
                 }
-                else if(itemCategory == GameItem.ItemCategory.Consumable) {
+                else if(itemCategory == GameItem.ItemCategory.Consumable)
+                {
                     gameItem.Action = new Heal(gameItem, node.AttributeAsInt("HitPointsToHeal"));
                 }
 
@@ -65,7 +71,8 @@ namespace Engine.Factories
 
         private static GameItem.ItemCategory DetermineItemCategory(string itemType)
         {
-            switch(itemType) {
+            switch(itemType)
+            {
                 case "Weapon":
                     return GameItem.ItemCategory.Weapon;
                 case "HealingItem":

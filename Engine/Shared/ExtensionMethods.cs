@@ -12,7 +12,8 @@ namespace Engine.Shared
         {
             var attribute = node.Attributes?[attributeName];
 
-            if(attribute == null) {
+            if(attribute == null)
+            {
                 throw new ArgumentException($"The attribute '{attributeName}' does not exist");
             }
 

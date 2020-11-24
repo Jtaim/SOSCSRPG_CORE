@@ -24,21 +24,24 @@ namespace Engine.Models
             _messageBroker.RaiseMessage("");
             _messageBroker.RaiseMessage($"You see a {_opponent.Name} here!");
 
-            if(CombatService.FirstAttacker(_player, _opponent) == CombatService.Combatant.Opponent) {
+            if(CombatService.FirstAttacker(_player, _opponent) == CombatService.Combatant.Opponent)
+            {
                 AttackPlayer();
             }
         }
 
         public void AttackOpponent()
         {
-            if(_player.CurrentWeapon == null) {
+            if(_player.CurrentWeapon == null)
+            {
                 _messageBroker.RaiseMessage("You must select a weapon, to attack.");
                 return;
             }
 
             _player.UseCurrentWeaponOn(_opponent);
 
-            if(_opponent.IsAlive) {
+            if(_opponent.IsAlive)
+            {
                 AttackPlayer();
             }
         }
@@ -61,7 +64,8 @@ namespace Engine.Models
             _messageBroker.RaiseMessage($"You receive {_opponent.Gold} gold.");
             _player.ReceiveGold(_opponent.Gold);
 
-            foreach(GameItem gameItem in _opponent.Inventory.Items) {
+            foreach(GameItem gameItem in _opponent.Inventory.Items)
+            {
                 _messageBroker.RaiseMessage($"You receive one {gameItem.Name}.");
                 _player.AddItemToInventory(gameItem);
             }

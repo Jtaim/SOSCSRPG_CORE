@@ -38,12 +38,14 @@ namespace Engine.Models
             var newMonster = new Monster(ID, Name, ImageName, MaximumHitPoints, Dexterity,
                                          CurrentWeapon, RewardExperiencePoints, Gold);
 
-            foreach(var itemPercentage in _lootTable) {
+            foreach(var itemPercentage in _lootTable)
+            {
                 // Clone the loot table - even though we probably won't need it
                 newMonster.AddItemToLootTable(itemPercentage.ID, itemPercentage.Percentage);
 
                 // Populate the new monster's inventory, using the loot table
-                if(RandomNumberGenerator.NumberBetween(1, 100) <= itemPercentage.Percentage) {
+                if(RandomNumberGenerator.NumberBetween(1, 100) <= itemPercentage.Percentage)
+                {
                     newMonster.AddItemToInventory(ItemFactory.CreateGameItem(itemPercentage.ID));
                 }
             }

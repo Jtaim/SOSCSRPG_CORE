@@ -24,8 +24,10 @@ namespace Engine.Services
         {
             var itemsToAdd = new List<GameItem>();
 
-            foreach(var itemQuantity in itemQuantities) {
-                for(var i = 0; i < itemQuantity.Quantity; i++) {
+            foreach(var itemQuantity in itemQuantities)
+            {
+                for(var i = 0; i < itemQuantity.Quantity; i++)
+                {
                     itemsToAdd.Add(ItemFactory.CreateGameItem(itemQuantity.ItemID));
                 }
             }
@@ -42,7 +44,8 @@ namespace Engine.Services
             var workingInventory = inventory.Items.ToList();
             IEnumerable<GameItem> itemsToRemove = items.ToList();
 
-            foreach(var item in itemsToRemove) {
+            foreach(var item in itemsToRemove)
+            {
                 workingInventory.Remove(item);
             }
 
@@ -54,8 +57,10 @@ namespace Engine.Services
             // REFACTOR
             var workingInventory = inventory;
 
-            foreach(var itemQuantity in itemQuantities) {
-                for(var i = 0; i < itemQuantity.Quantity; i++) {
+            foreach(var itemQuantity in itemQuantities)
+            {
+                for(var i = 0; i < itemQuantity.Quantity; i++)
+                {
                     workingInventory = workingInventory.RemoveItem(workingInventory.Items
                                                        .First(item => item.ItemTypeID == itemQuantity.ItemID));
                 }

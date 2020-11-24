@@ -10,7 +10,8 @@ namespace Engine.Actions
         public Heal(GameItem itemInUse, int hitPointsToHeal)
             : base(itemInUse)
         {
-            if(itemInUse.Category != GameItem.ItemCategory.Consumable) {
+            if(itemInUse.Category != GameItem.ItemCategory.Consumable)
+            {
                 throw new ArgumentException($"{itemInUse.Name} is not consumable");
             }
 

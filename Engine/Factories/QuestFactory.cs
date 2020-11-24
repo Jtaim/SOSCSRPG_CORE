@@ -15,30 +15,35 @@ namespace Engine.Factories
 
         static QuestFactory()
         {
-            if(File.Exists(GAME_DATA_FILENAME)) {
+            if(File.Exists(GAME_DATA_FILENAME))
+            {
                 var data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
 
                 LoadQuestsFromNodes(data.SelectNodes("/Quests/Quest"));
             }
-            else {
+            else
+            {
                 throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
         }
 
         private static void LoadQuestsFromNodes(XmlNodeList nodes)
         {
-            foreach(XmlNode node in nodes) {
+            foreach(XmlNode node in nodes)
+            {
                 // Declare the items need to complete the quest, and its reward items
                 var itemsToComplete = new List<ItemQuantity>();
                 var rewardItems = new List<ItemQuantity>();
 
-                foreach(XmlNode childNode in node.SelectNodes("./ItemsToComplete/Item")) {
+                foreach(XmlNode childNode in node.SelectNodes("./ItemsToComplete/Item"))
+                {
                     itemsToComplete.Add(new ItemQuantity(childNode.AttributeAsInt("ID"),
                                                          childNode.AttributeAsInt("Quantity")));
                 }
 
-                foreach(XmlNode childNode in node.SelectNodes("./RewardItems/Item")) {
+                foreach(XmlNode childNode in node.SelectNodes("./RewardItems/Item"))
+                {
                     rewardItems.Add(new ItemQuantity(childNode.AttributeAsInt("ID"),
                                                      childNode.AttributeAsInt("Quantity")));
                 }
