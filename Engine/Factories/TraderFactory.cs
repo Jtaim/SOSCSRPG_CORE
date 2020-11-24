@@ -15,28 +15,33 @@ namespace Engine.Factories
 
         static TraderFactory()
         {
-            if(File.Exists(GAME_DATA_FILENAME)) {
+            if(File.Exists(GAME_DATA_FILENAME))
+            {
                 var data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
 
                 LoadTradersFromNodes(data.SelectNodes("/Traders/Trader"));
             }
-            else {
+            else
+            {
                 throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
         }
 
         private static void LoadTradersFromNodes(XmlNodeList nodes)
         {
-            foreach(XmlNode node in nodes) {
+            foreach(XmlNode node in nodes)
+            {
                 var trader = new Trader(node.AttributeAsInt("ID"), node.SelectSingleNode("./Name")?.InnerText ?? "");
 
-                foreach(XmlNode childNode in node.SelectNodes("./InventoryItems/Item")) {
+                foreach(XmlNode childNode in node.SelectNodes("./InventoryItems/Item"))
+                {
                     int quantity = childNode.AttributeAsInt("Quantity");
 
                     // Create a new GameItem object for each item we add.
                     // This is to allow for unique items, like swords with enchantments.
-                    for(int i = 0; i < quantity; i++) {
+                    for(int i = 0; i < quantity; i++)
+                    {
                         trader.AddItemToInventory(ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID")));
                     }
                 }

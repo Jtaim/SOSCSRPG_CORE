@@ -56,8 +56,10 @@ namespace WPFUI
 
         private void OnClick_DisplayTradeScreen(object sender, RoutedEventArgs e)
         {
-            if(_gameSession.CurrentTrader != null) {
-                var tradeScreen = new TradeScreen {
+            if(_gameSession.CurrentTrader != null)
+            {
+                var tradeScreen = new TradeScreen
+                {
                     Owner = this,
                     DataContext = _gameSession
                 };
@@ -101,16 +103,20 @@ namespace WPFUI
 
         private void MainWindow_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(_userInputActions.ContainsKey(e.Key)) {
+            if(_userInputActions.ContainsKey(e.Key))
+            {
                 _userInputActions[e.Key].Invoke();
             }
         }
 
         private void SetTabFocusTo(string tabName)
         {
-            foreach(var item in PlayerDataTabControl.Items) {
-                if(item is TabItem tabItem) {
-                    if(tabItem.Name == tabName) {
+            foreach(var item in PlayerDataTabControl.Items)
+            {
+                if(item is TabItem tabItem)
+                {
+                    if(tabItem.Name == tabName)
+                    {
                         tabItem.IsSelected = true;
                         return;
                     }

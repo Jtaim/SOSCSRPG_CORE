@@ -13,11 +13,13 @@ namespace WPFUI.CustomConverters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(!(value is string filename)) {
+            if(!(value is string filename))
+            {
                 return null;
             }
 
-            if(!_locations.ContainsKey(filename)) {
+            if(!_locations.ContainsKey(filename))
+            {
                 _locations.Add(filename,
                                new BitmapImage(new Uri($"{AppDomain.CurrentDomain.BaseDirectory}{filename}",
                                                        UriKind.Absolute)));

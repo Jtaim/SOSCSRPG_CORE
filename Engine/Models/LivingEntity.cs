@@ -78,13 +78,15 @@ namespace Engine.Models
         public GameItem CurrentWeapon {
             get => _currentWeapon;
             set {
-                if(_currentWeapon != null) {
+                if(_currentWeapon != null)
+                {
                     _currentWeapon.Action.OnActionPerformed -= RaiseActionPerformedEvent;
                 }
 
                 _currentWeapon = value;
 
-                if(_currentWeapon != null) {
+                if(_currentWeapon != null)
+                {
                     _currentWeapon.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
 
@@ -95,13 +97,15 @@ namespace Engine.Models
         public GameItem CurrentConsumable {
             get => _currentConsumable;
             set {
-                if(_currentConsumable != null) {
+                if(_currentConsumable != null)
+                {
                     _currentConsumable.Action.OnActionPerformed -= RaiseActionPerformedEvent;
                 }
 
                 _currentConsumable = value;
 
-                if(_currentConsumable != null) {
+                if(_currentConsumable != null)
+                {
                     _currentConsumable.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
 
@@ -145,7 +149,8 @@ namespace Engine.Models
         {
             CurrentHitPoints -= hitPointsOfDamage;
 
-            if(IsDead) {
+            if(IsDead)
+            {
                 CurrentHitPoints = 0;
                 RaiseOnKilledEvent();
             }
@@ -155,7 +160,8 @@ namespace Engine.Models
         {
             CurrentHitPoints += hitPointsToHeal;
 
-            if(CurrentHitPoints > MaximumHitPoints) {
+            if(CurrentHitPoints > MaximumHitPoints)
+            {
                 CurrentHitPoints = MaximumHitPoints;
             }
         }
@@ -168,7 +174,8 @@ namespace Engine.Models
 
         public void SpendGold(int amountOfGold)
         {
-            if(amountOfGold > Gold) {
+            if(amountOfGold > Gold)
+            {
                 throw new ArgumentOutOfRangeException($"{Name} only has {Gold} gold, and cannot spend {amountOfGold} gold");
             }
 
@@ -202,13 +209,15 @@ namespace Engine.Models
         private void DefaultItemsSelection()
         {
             // keep weapon combo-box populated 
-            if(CurrentWeapon == null && Inventory.Weapons.Count != 0) {
+            if(CurrentWeapon == null && Inventory.Weapons.Count != 0)
+            {
                 var weapons = Inventory.Weapons;
                 CurrentWeapon = weapons[0];
             }
 
             // keep consumable combo-box populated 
-            if(Inventory.HasConsumable) {
+            if(Inventory.HasConsumable)
+            {
                 var consumable = Inventory.Consumables;
                 CurrentConsumable = consumable[0];
             }

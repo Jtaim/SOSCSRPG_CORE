@@ -33,14 +33,16 @@ namespace Engine.Models
 
         public void AddIngredient(int itemID, int quantity)
         {
-            if(!Ingredients.Any(x => x.ItemID == itemID)) {
+            if(!Ingredients.Any(x => x.ItemID == itemID))
+            {
                 Ingredients.Add(new ItemQuantity(itemID, quantity));
             }
         }
 
         public void AddOutputItem(int itemID, int quantity)
         {
-            if(!OutputItems.Any(x => x.ItemID == itemID)) {
+            if(!OutputItems.Any(x => x.ItemID == itemID))
+            {
                 OutputItems.Add(new ItemQuantity(itemID, quantity));
             }
         }

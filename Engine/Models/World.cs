@@ -13,8 +13,10 @@ namespace Engine.Models
 
         public Location LocationAt(int xCoordinate, int yCoordinate)
         {
-            foreach(var loc in _locations) {
-                if(loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate) {
+            foreach(var loc in _locations)
+            {
+                if(loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate)
+                {
                     return loc;
                 }
             }

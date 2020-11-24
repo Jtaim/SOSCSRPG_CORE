@@ -15,28 +15,33 @@ namespace Engine.Factories
 
         static RecipeFactory()
         {
-            if(File.Exists(GAME_DATA_FILENAME)) {
+            if(File.Exists(GAME_DATA_FILENAME))
+            {
                 var data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
 
                 LoadRecipesFromNodes(data.SelectNodes("/Recipes/Recipe"));
             }
-            else {
+            else
+            {
                 throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
         }
 
         private static void LoadRecipesFromNodes(XmlNodeList nodes)
         {
-            foreach(XmlNode node in nodes) {
+            foreach(XmlNode node in nodes)
+            {
                 var recipe = new Recipe(node.AttributeAsInt("ID"), node.SelectSingleNode("./Name")?.InnerText ?? "");
 
-                foreach(XmlNode childNode in node.SelectNodes("./Ingredients/Item")) {
+                foreach(XmlNode childNode in node.SelectNodes("./Ingredients/Item"))
+                {
                     recipe.AddIngredient(childNode.AttributeAsInt("ID"),
                                          childNode.AttributeAsInt("Quantity"));
                 }
 
-                foreach(XmlNode childNode in node.SelectNodes("./OutputItems/Item")) {
+                foreach(XmlNode childNode in node.SelectNodes("./OutputItems/Item"))
+                {
                     recipe.AddOutputItem(childNode.AttributeAsInt("ID"),
                                          childNode.AttributeAsInt("Quantity"));
                 }

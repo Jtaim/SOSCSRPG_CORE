@@ -42,11 +42,13 @@ namespace Engine.Models
 
         public Inventory(IEnumerable<GameItem> items = null)
         {
-            if(items == null) {
+            if(items == null)
+            {
                 return;
             }
 
-            foreach(var item in items) {
+            foreach(var item in items)
+            {
                 _backingInventory.Add(item);
 
                 AddItemToGroupedInventory(item);
@@ -67,11 +69,14 @@ namespace Engine.Models
         // REFACTOR: Look for a better way to do this (extension method?)
         private void AddItemToGroupedInventory(GameItem item)
         {
-            if(item.IsUnique) {
+            if(item.IsUnique)
+            {
                 _backingGroupedInventoryItems.Add(new GroupedInventoryItem(item, 1));
             }
-            else {
-                if(_backingGroupedInventoryItems.All(gi => gi.Item.ItemTypeID != item.ItemTypeID)) {
+            else
+            {
+                if(_backingGroupedInventoryItems.All(gi => gi.Item.ItemTypeID != item.ItemTypeID))
+                {
                     _backingGroupedInventoryItems.Add(new GroupedInventoryItem(item, 0));
                 }
 

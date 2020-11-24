@@ -5,8 +5,8 @@ Following [Scott Lilly's Build a C#/WPF RPG](https://scottlilly.com/build-a-cwpf
 Using [Visual Studio Community 2019](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)<br>
 ### Setup is a solution with 2 projects:
 - Solution is <b>SOSCSRPG_CORE</b>
-- project <b>WPFUI</b> is a WPF windows application (.NET Core 3.1)
-- project <b>Engine</b> is a Class Library (.NET Core 3.1)
+- project <b>WPFUI</b> is a WPF windows application (.NET 5.0)
+- project <b>Engine</b> is a Class Library (.NET 5.0)
 <br>
 <br>
 Images need to be BitMap,  refer to TAG: BitMapConversion?<br>
@@ -26,7 +26,7 @@ Not sure how otherwise to call a png image directly from a resource file prior t
 - [Windows Presentation Foundation (WPF)](https://docs.microsoft.com/en-us/dotnet/framework/wpf/)
 - [Additional .Net development information](https://dotnet.microsoft.com/download)
 - [.Net on GitHub](https://github.com/dotnet)
-- [WPF.Net Core: 3.1](https://docs.microsoft.com/en-us/dotnet/api/?view=netcore-3.1)
+- [.Net: 5.0](https://docs.microsoft.com/en-us/dotnet/api/?view=net-5.0)
 
 
  ##### Disclaimer

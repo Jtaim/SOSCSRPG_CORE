@@ -11,14 +11,16 @@ namespace Engine.Services
         {
             var logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LOG_FILE_DIRECTORY);
 
-            if(!Directory.Exists(logDirectory)) {
+            if(!Directory.Exists(logDirectory))
+            {
                 Directory.CreateDirectory(logDirectory);
             }
         }
 
         public static void Log(Exception exception, bool isInnerException = false)
         {
-            using(var sw = new StreamWriter(LogFileName(), true)) {
+            using(var sw = new StreamWriter(LogFileName(), true))
+            {
                 sw.WriteLine(isInnerException ? "INNER EXCEPTION" : $"EXCEPTION: {DateTime.Now}");
                 sw.WriteLine(new string(isInnerException ? '-' : '=', 40));
                 sw.WriteLine($"{exception.Message}");
@@ -27,7 +29,8 @@ namespace Engine.Services
                 sw.WriteLine(); // Blank line, to make the log file easier to read
             }
 
-            if(exception.InnerException != null) {
+            if(exception.InnerException != null)
+            {
                 Log(exception.InnerException, true);
             }
         }

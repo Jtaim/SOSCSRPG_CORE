@@ -51,7 +51,8 @@ namespace Engine.Models
 
         public void LearnRecipe(Recipe recipe)
         {
-            if(!Recipes.Any(r => r.ID == recipe.ID)) {
+            if(!Recipes.Any(r => r.ID == recipe.ID))
+            {
                 Recipes.Add(recipe);
             }
         }
@@ -61,7 +62,8 @@ namespace Engine.Models
             var originalLevel = Level;
             Level = (ExperiencePoints / 100) + 1;
 
-            if(Level != originalLevel) {
+            if(Level != originalLevel)
+            {
                 MaximumHitPoints = Level * 10;
                 OnLeveledUp?.Invoke(this, System.EventArgs.Empty);
             }

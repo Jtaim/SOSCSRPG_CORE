@@ -17,12 +17,14 @@ namespace Engine.Services
 
         public static GameSession LoadLastSaveOrCreateNew()
         {
-            if(!File.Exists(SAVE_GAME_FILE_NAME)) {
+            if(!File.Exists(SAVE_GAME_FILE_NAME))
+            {
                 return new GameSession();
             }
 
             // Save game file exists, so create the GameSession object from it.
-            try {
+            try
+            {
                 var data = JObject.Parse(File.ReadAllText(SAVE_GAME_FILE_NAME));
 
                 // Populate Player object
@@ -34,7 +36,8 @@ namespace Engine.Services
                 // Create GameSession object with saved game data
                 return new GameSession(player, x, y);
             }
-            catch(Exception ex) {
+            catch(Exception ex)
+            {
                 // If there was an error loading/deserializing the saved game, 
                 // create a brand new GameSession object.
                 return new GameSession();
@@ -47,7 +50,8 @@ namespace Engine.Services
 
             Player player;
 
-            switch(fileVersion) {
+            switch(fileVersion)
+            {
                 case "0.1.000":
                     player = new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
                                         (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)],
@@ -74,9 +78,11 @@ namespace Engine.Services
         {
             var fileVersion = FileVersion(data);
 
-            switch(fileVersion) {
+            switch(fileVersion)
+            {
                 case "0.1.000":
-                    foreach(var itemToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Inventory)][nameof(Inventory.Items)]) {
+                    foreach(var itemToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Inventory)][nameof(Inventory.Items)])
+                    {
                         var itemId = (int)itemToken[nameof(GameItem.ItemTypeID)];
 
                         player.AddItemToInventory(ItemFactory.CreateGameItem(itemId));
@@ -92,14 +98,18 @@ namespace Engine.Services
         {
             var fileVersion = FileVersion(data);
 
-            switch(fileVersion) {
+            switch(fileVersion)
+            {
                 case "0.1.000":
-                    foreach(var questToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Quests)]) {
+                    foreach(var questToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Quests)])
+                    {
                         var questId = (int)questToken[nameof(QuestStatus.PlayerQuest)][nameof(QuestStatus.PlayerQuest.ID)];
 
                         var quest = QuestFactory.GetQuestByID(questId);
-                        var questStatus = new QuestStatus(quest);
-                        questStatus.IsCompleted = (bool)questToken[nameof(QuestStatus.IsCompleted)];
+                        var questStatus = new QuestStatus(quest)
+                        {
+                            IsCompleted = (bool)questToken[nameof(QuestStatus.IsCompleted)]
+                        };
 
                         player.Quests.Add(questStatus);
                     }
@@ -114,9 +124,11 @@ namespace Engine.Services
         {
             var fileVersion = FileVersion(data);
 
-            switch(fileVersion) {
+            switch(fileVersion)
+            {
                 case "0.1.000":
-                    foreach(var recipeToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Recipes)]) {
+                    foreach(var recipeToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Recipes)])
+                    {
                         var recipeId = (int)recipeToken[nameof(Recipe.ID)];
 
                         var recipe = RecipeFactory.RecipeByID(recipeId);

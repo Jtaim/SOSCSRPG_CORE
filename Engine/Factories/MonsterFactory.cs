@@ -16,7 +16,8 @@ namespace Engine.Factories
 
         static MonsterFactory()
         {
-            if(File.Exists(GAME_DATA_FILENAME)) {
+            if(File.Exists(GAME_DATA_FILENAME))
+            {
                 var data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
 
@@ -24,18 +25,21 @@ namespace Engine.Factories
 
                 LoadMonstersFromNodes(data.SelectNodes("/Monsters/Monster"), rootImagePath);
             }
-            else {
+            else
+            {
                 throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
         }
 
         private static void LoadMonstersFromNodes(XmlNodeList nodes, string rootImagePath)
         {
-            if(nodes == null) {
+            if(nodes == null)
+            {
                 return;
             }
 
-            foreach(XmlNode node in nodes) {
+            foreach(XmlNode node in nodes)
+            {
                 var monster = new Monster(node.AttributeAsInt("ID"),
                                           node.AttributeAsString("Name"),
                                           $".{rootImagePath}{node.AttributeAsString("ImageName")}",
@@ -46,8 +50,10 @@ namespace Engine.Factories
                                           node.AttributeAsInt("Gold"));
 
                 var lootItemNodes = node.SelectNodes("./LootItems/LootItem");
-                if(lootItemNodes != null) {
-                    foreach(XmlNode lootItemNode in lootItemNodes) {
+                if(lootItemNodes != null)
+                {
+                    foreach(XmlNode lootItemNode in lootItemNodes)
+                    {
                         monster.AddItemToLootTable(lootItemNode.AttributeAsInt("ID"),
                                                    lootItemNode.AttributeAsInt("Percentage"));
                     }
