@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using Engine.Services;
+using System.Windows;
 using System.Windows.Threading;
-using Engine.Services;
 
 namespace WPFUI
 {

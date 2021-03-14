@@ -1,8 +1,8 @@
-﻿using System;
-using Engine.Actions;
+﻿using Engine.Actions;
 using Engine.Factories;
 using Engine.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestEngine.Actions
 {
